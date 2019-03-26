@@ -73,6 +73,20 @@
           </div>
         </form>
       </div><!--/.nav-collapse -->
+
+      <div class="control-panel">
+        <div>
+          <span id="track-icon" onclick="clickPlay();" class="glyphicon glyphicon-play"></span>
+          <span id="currenttrack"></span>
+        </div>
+        <h4>
+          <span id="album" class="text"></span>
+          <span id="artist" class="text pull-right"></span>
+        </h4>
+        <p id="counter" class="text pull-right">&nbsp;&nbsp;</p>
+
+        <div id="progressbar"></div>
+      </div>
     </div>
   </div>
 
@@ -81,10 +95,10 @@
 
       <div class="col-md-10 col-xs-12">
         <div class="notifications top-right"></div>
-        
+
         <div class="panel panel-primary">
           <!-- Default panel contents -->
-          <div class="panel-heading"><b id="panel-heading">Queue</b></div>
+          <!-- <div class="panel-heading"><b id="panel-heading">Queue</b></div>
           <div class="panel-body">
             <h1>
               <span id="track-icon" onclick="clickPlay();" class="glyphicon glyphicon-play"></span>
@@ -99,7 +113,7 @@
             <div id="progressbar"></div>
 
 
-          </div><!-- /.panel-body -->
+          </div> -->
 
           <ol id="breadcrump" class="breadcrumb">
           </ol>
@@ -296,7 +310,7 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-  
+
   <div class="modal fade" id="savequeue" tabindex="-1" role="dialog" aria-labelledby="savequeueLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
