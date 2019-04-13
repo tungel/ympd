@@ -585,6 +585,8 @@ int mpd_put_current_song(char *buffer)
     cur += json_emit_quoted_str(cur, end - cur, mpd_get_title(song));
     cur += json_emit_raw_str(cur, end - cur, ",\"uri\":");
     cur += json_emit_quoted_str(cur, end - cur, mpd_song_get_uri(song));
+    cur += json_emit_raw_str(cur, end - cur, ",\"id\":");
+    cur += json_emit_int(cur, end - cur, mpd_song_get_id(song));
     cur += json_emit_raw_str(cur, end - cur, ",\"artist\":");
     cur += json_emit_quoted_str(cur, end - cur, mpd_get_artist(song));
     cur += json_emit_raw_str(cur, end - cur, ",\"album\":");

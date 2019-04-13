@@ -32,6 +32,7 @@ var isTouch = Modernizr.touch ? 1 : 0;
 var filter = undefined;
 var dirble_api_token = "";
 var dirble_stations = false;
+var currentSongAnchor = "#";
 
 var app = $.sammy(function() {
 
@@ -228,7 +229,7 @@ function webSocketConnect() {
                         var seconds = obj.data[song].duration - minutes * 60;
 
                         $('#salamisandwich > tbody').append(
-                            "<tr trackid=\"" + obj.data[song].id + "\"><td>" + (obj.data[song].pos + 1) + "</td>" +
+                            "<tr trackid=\"" + obj.data[song].id + "\"><td><a class=\"song-anchor\" id=\"" + obj.data[song].id + "\"></a>" + (obj.data[song].pos + 1) + "</td>" +
                                 "<td>" + obj.data[song].artist + "<br /><span>" + obj.data[song].album  + "</span></td>" +
                                 "<td>" + obj.data[song].title  + "</td>" +
                                 "<td>" + minutes + ":" + (seconds < 10 ? '0' : '') + seconds +
@@ -537,6 +538,31 @@ function webSocketConnect() {
 
                     $('#currenttrack').text(" " + obj.data.title);
                     $('#currenttrack-uri').text(" " + obj.data.uri);
+
+                    currentSongAnchor = "#" + obj.data.id;
+
+                    $('#currenttrack-uri').click((e) => {
+                        e.preventDefault();
+                        const currentSongRow = $(currentSongAnchor).get(0);
+
+                        if (currentSongRow != undefined) {
+                            currentSongRow.scrollIntoView({behavior: "smooth"});
+                        }
+
+                        // NOTE: accessing `obj.data.id` in this closure yields
+                        // incorrect result. We should store the current song's ID to a
+                        // global variable and access it here
+                        // const section = "#" + obj.data.id;
+                        // $("html, body").animate({
+                        //     scrollTop: $(section).offset().top
+                        // });
+                        // $("html, body").scrollTo(section);
+                    });
+
+                    // use `pos` as an anchor to jump to. However this method
+                    // hides the previous songs in the list
+                    // $('#jump-to-track').attr("href", "#/" + obj.data.pos);
+
                     // console.log(obj); // for debug
                     var notification = "<strong><h4>" + obj.data.title + "</h4></strong>";
 
