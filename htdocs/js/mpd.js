@@ -537,7 +537,7 @@ function webSocketConnect() {
 					$('#btnlove').removeClass("active");
 
                     $('#currenttrack').text(" " + obj.data.title);
-                    $('#currenttrack-uri').text(" " + obj.data.uri);
+                    $('#currenttrack-uri').text(`${obj.data.pos + 1}: ${obj.data.uri}`);
 
                     currentSongAnchor = "#" + obj.data.id;
 
